@@ -44,8 +44,6 @@ def generator(x, s=(299, 299), b=5,
 
 def create_model(xn="feature"):
     """
-    Creates the inception v4 network. The image size defaults to published method.
-    Note this model needs to be compiled before run.
     :param xn: Name to give the last pooling layer
     :return: The log-its outputs of the model (Default)
     """
@@ -198,7 +196,7 @@ class ImgWindow:
         return self.__cubes
 
 
-def extract_cubes(path, s_f=".jpg", d=300, tp="random", n=10, m=20, c=20, folder=False):
+def extract_cubes(path, s_f=".jpg", d=300, tp="random", n=20, m=20, c=20, folder=False):
     """
     Extract cubes from images
     Parameters:
