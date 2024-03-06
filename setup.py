@@ -8,18 +8,17 @@ with open("requirements.txt") as rq:
 
 
 setuptools.setup(
-    name="ACSNI",
-    version="1.0.6",
-    scripts=["bin/ACSNI-run", "bin/ACSNI-derive", "bin/ACSNI-get", "bin/ACSNI-split"],
+    name="giExtract",
+    version="1.0.0",
+    scripts=["bin/giExtract", "bin/giCube"],
     author="Chinedu A. Anene",
-    collaborator="Faraz Khan",
     author_email="caanenedr@outlook.com",
-    description="automatic context-specific network inference",
+    description="Digital pathology feature extraction",
     long_description=long_description,
     long_description_content_type="text/markdown",
-    url="https://github.com/caanene1/ACSNI",
-    download_url = "https://github.com/caanene1/ACSNI/releases/download/1.0.6/ACSNI-1.0.6-py3-none-any.whl",
-    packages=setuptools.find_packages(include=["ACSNI"]),
+    url="https://github.com/caanene1/giExtract",
+    download_url = "https://github.com/caanene1/giExtract/releases/download/1.0.6/giExtract-1.0.0-py3-none-any.whl",
+    packages=setuptools.find_packages(include=["giExtract"]),
     include_package_data=True,
     classifiers=[
         "Programming Language :: Python :: 3",
@@ -32,3 +31,4 @@ setuptools.setup(
 
 # Build >> python3 setup.py sdist bdist_wheel
 # Upload >> sudo twine upload dist/*
+

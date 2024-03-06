@@ -1,0 +1,46 @@
+#!python
+
+import argparse
+from giExtract.util import extract_cubes
+
+
+parser = argparse.ArgumentParser()
+parser.add_argument('-p', '--path', type=str, required=True, default="CNESCC_JPF_sf8-PWF",
+                    help="Path to images")
+
+parser.add_argument('-f', '--format', type=str, required=False, default=".jpg",
+                    help="Image format to load and extract")
+
+parser.add_argument('-d', '--dimension', type=int, required=False, default=300,
+                    help="Dimension of the extracted cubes d * d")
+
+parser.add_argument('-t', '--tp', type=str, required=False, default="random",
+                    help="The type of extraction to perform")
+
+parser.add_argument('-n', '--num', type=int, required=False, default=50,
+                    help="The number of random cubes if -t is random")
+
+parser.add_argument('-q', '--tolerance', type=int, required=False, default=20,
+                    help="The tolerance for masking white space")
+
+parser.add_argument('-m', '--percentage', type=int, required=False, default=20,
+                    help="The lowest allowed white space percentage")
+
+parser.add_argument('-s', '--save', type=bool, required=False, default=False,
+                    help="The number of random cubes if -t is random")
+
+args = parser.parse_args()
+
+
+path = args.path
+fom = args.format
+dim = args.dimension
+ext = args.tp
+nn = args.num
+m_tolerance = args.tolerance
+m_percentage = args.percentage
+fold = args.save
+
+# Run
+extract_cubes(path=path, s_f=fom, d=dim, tp=ext, n=nn,
+              m=m_tolerance, c=m_percentage, folder=fold)

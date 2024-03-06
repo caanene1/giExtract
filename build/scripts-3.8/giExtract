@@ -1,0 +1,68 @@
+#!python
+
+"""
+Name: giExtractor
+Author: Chinedu A. Anene, Phd
+"""
+
+import argparse
+from giExtract.util import generator, create_model, nat_com
+import pandas as pd
+import os
+
+parser = argparse.ArgumentParser()
+parser.add_argument('-p', '--path', type=str, required=True, default="images",
+                    help="Path to images")
+
+parser.add_argument('-c', '--context', type=str, required=True, default="context.csv",
+                    help="Context file with at least a column for flowing the images")
+
+parser.add_argument('-k', '--column', type=str, required=True, default="Name",
+                    help="The column name in context to use for flowing data")
+
+parser.add_argument('-b', '--batch', type=int, required=False, default=5,
+                    help="Batch size for flowing the data into the models")
+
+parser.add_argument('-s', '--natcom', type=str, required=False, default="no",
+                    help="Indicate if the NatCom et al features should be calculated")
+
+args = parser.parse_args()
+
+path = args.path
+BATCH_SIZE = args.batch
+c_file = args.column
+context_file = args.context
+do_extra = args.natcom
+
+res = pd.read_csv(context_file)
+
+predict_gen_S = generator(res, s=(224, 224), b=BATCH_SIZE,
+                        path=path, file=c_file)
+
+predict_gen_L = generator(res, s=(229, 229), b=BATCH_SIZE,
+                        path=path, file=c_file)
+
+m_predict = create_model()
+o_predict = list()
+
+for key in m_predict:
+    print(key)
+    if key in ["inception", "inception_res"]:
+        pp = m_predict[key].predict(predict_gen_L)
+    else:
+        pp = m_predict[key].predict(predict_gen_S)
+
+    pp = pd.DataFrame(pp)
+    pp = pp.add_prefix(key + "_")
+    o_predict.append(pp)
+
+o_predict = pd.concat(o_predict, axis=1)
+o_predict[c_file] = predict_gen_S.filenames
+o_predict.to_csv("Predictions_" + os.path.basename(context_file) + ".csv", index=False)
+
+if do_extra == "yes":
+    nat = nat_com(o_predict)
+    nat.to_csv("NatCom_Model_" + os.path.basename(context_file) + ".csv", index=False)
+
+
+

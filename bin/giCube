@@ -1,3 +1,5 @@
+#!/usr/bin/env python
+
 import argparse
 from giExtract.util import extract_cubes
 
@@ -6,10 +8,10 @@ parser = argparse.ArgumentParser()
 parser.add_argument('-p', '--path', type=str, required=True, default="CNESCC_JPF_sf8-PWF",
                     help="Path to images")
 
-parser.add_argument('-f', '--format', type=str, required=True, default=".jpg",
+parser.add_argument('-f', '--format', type=str, required=False, default=".jpg",
                     help="Image format to load and extract")
 
-parser.add_argument('-d', '--dimension', type=int, required=True, default=300,
+parser.add_argument('-d', '--dimension', type=int, required=False, default=300,
                     help="Dimension of the extracted cubes d * d")
 
 parser.add_argument('-t', '--tp', type=str, required=False, default="random",
@@ -18,7 +20,7 @@ parser.add_argument('-t', '--tp', type=str, required=False, default="random",
 parser.add_argument('-n', '--num', type=int, required=False, default=50,
                     help="The number of random cubes if -t is random")
 
-parser.add_argument('-t', '--tolerance', type=int, required=False, default=20,
+parser.add_argument('-q', '--tolerance', type=int, required=False, default=20,
                     help="The tolerance for masking white space")
 
 parser.add_argument('-m', '--percentage', type=int, required=False, default=20,

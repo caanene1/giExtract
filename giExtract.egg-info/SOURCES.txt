@@ -1,0 +1,11 @@
+README.md
+setup.py
+bin/giCube
+bin/giExtract
+giExtract/__init__.py
+giExtract/util.py
+giExtract.egg-info/PKG-INFO
+giExtract.egg-info/SOURCES.txt
+giExtract.egg-info/dependency_links.txt
+giExtract.egg-info/requires.txt
+giExtract.egg-info/top_level.txt
