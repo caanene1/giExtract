@@ -9,7 +9,7 @@ with open("requirements.txt") as rq:
 
 setuptools.setup(
     name="giExtract",
-    version="1.0.0",
+    version="1.0.1",
     scripts=["bin/giExtract", "bin/giCube"],
     author="Chinedu A. Anene",
     author_email="caanenedr@outlook.com",
@@ -17,7 +17,7 @@ setuptools.setup(
     long_description=long_description,
     long_description_content_type="text/markdown",
     url="https://github.com/caanene1/giExtract",
-    download_url = "https://github.com/caanene1/giExtract/releases/download/1.0.6/giExtract-1.0.0-py3-none-any.whl",
+    download_url = "https://github.com/caanene1/giExtract/releases/download/1.0.6/giExtract-1.0.1-py3-none-any.whl",
     packages=setuptools.find_packages(include=["giExtract"]),
     include_package_data=True,
     classifiers=[
