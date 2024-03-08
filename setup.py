@@ -9,7 +9,7 @@ with open("requirements.txt") as rq:
 
 setuptools.setup(
     name="giExtract",
-    version="1.0.1",
+    version="1.0.2",
     scripts=["bin/giExtract", "bin/giCube"],
     author="Chinedu A. Anene",
     author_email="caanenedr@outlook.com",
