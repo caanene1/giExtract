@@ -39,7 +39,7 @@ gifeature <- function(context, cnnfeature, mergeColumn="Name",
   # Column name with matching IDs to merge the two tables
   # mergeColumn must be the same name as in the two files
   
-  obj <- read.csv(contxt)
+  obj <- read.csv(context)
   nncol <- ncol(obj)
   
   if(nncol != 3)(
@@ -60,7 +60,7 @@ gifeature <- function(context, cnnfeature, mergeColumn="Name",
   final <- final[!final$Group %in% "Unknown", ]
   final <- final[!is.na(final$Group), ]
   
-  # Creat a hold
+  # Create a hold
   fina2 <- final[3:ncol(predict)]
   
   get <- data.frame("id"=names(fina2[-1]),
@@ -79,6 +79,10 @@ gifeature <- function(context, cnnfeature, mergeColumn="Name",
   
   # Prepare the Discovery and test data
   samp <- unique(final$slide)
+  if(length(samp) < 2)(
+    stop("ERROR: The feature file seems to have only one data point.")
+  )
+  
   
   set.seed(2389)
   disco <- sample(samp, 60,
@@ -305,3 +309,4 @@ gifeature <- function(context, cnnfeature, mergeColumn="Name",
 gifeature(context=args[1], cnnfeature = args[2],
           mergeColumn = args[3], slideColumn = args[4], 
           groupColumn = args[5])
+
