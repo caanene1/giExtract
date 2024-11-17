@@ -123,6 +123,7 @@ gifeature <- function(context, cnnfeature, mergeColumn="Name",
   
   #########
   ## Do feature selection per group
+  install.packages("tidyverse")
   library(tidyverse)
   
   dis_dat2 <- dis_dat
